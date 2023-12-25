@@ -1,4 +1,4 @@
-import LoginPage from "@/components/landingPage/loginPage";
+import LoginPage from "@/components/loginPage";
 import React from "react";
 function Login(){
     return<LoginPage/>
