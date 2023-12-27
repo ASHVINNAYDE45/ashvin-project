@@ -2,9 +2,8 @@ import React from 'react'
 
 function BecomeAnInstructor() {
   return (
-
-
-    <section className="pt-0 pt-lg-5">
+   
+   <section className="pt-0 pt-lg-5">
       <div className="container position-relative">
         <figure className="position-absolute top-50 start-50 translate-middle ms-2">
           <svg>

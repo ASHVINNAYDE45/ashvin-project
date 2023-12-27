@@ -5,10 +5,11 @@ import "@/styles/custom.css";
 import "@/styles/theme.min.css";
 
 export default function App({ Component, pageProps }) {
-  return(
-  <LayoutPage>
-   <Component {...pageProps} />
-  </LayoutPage> 
-  )
-  
+   const getLayout = Component.getLayout || ((page) => page);
+  // return(
+  // <LayoutPage>
+  //  <Component {...pageProps} />
+  // </LayoutPage> 
+  // )
+  return getLayout(<Component {...pageProps} />);
 }

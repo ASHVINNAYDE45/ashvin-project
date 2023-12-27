@@ -4,6 +4,7 @@ import CounterSection from './counterSection';
 import CounterSections from './counterSections';
 import TopSection from './topSection';
 import BecomeAnInstructor from './becomeAnInstructor'
+import ReviewRating from './reviewRating'
 
 function LandingPage() {
   return (
@@ -11,6 +12,7 @@ function LandingPage() {
   <TopSection/>
   <CounterSections/>
   <BecomeAnInstructor/>
+  <ReviewRating/>
  
   </main>
   )
