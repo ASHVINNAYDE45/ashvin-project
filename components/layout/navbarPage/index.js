@@ -51,7 +51,10 @@ import React from 'react'
                 <Link href="/" className="nav-link">
                   Home
                 </Link>
-                <Nav.Link href="#pricing">User List</Nav.Link>
+                 <Nav.Link href="userList">User List</Nav.Link> 
+                {/* <Link href="/" className="nav-link">
+                  User List
+                </Link> */}
                 <Nav.Link href="#pricing">Profile</Nav.Link>
               </Nav>
     
@@ -74,7 +77,7 @@ import React from 'react'
               <Nav>
                 <Link href="/signup" className="nav-link">
                   Signup
-                </Link>
+                </Link> 
                 <Link href="/login" className="nav-link">
                   Login
                 </Link>
