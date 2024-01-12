@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-function SignUpPage(){
+function SignUpPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -10,35 +10,81 @@ function SignUpPage(){
     email: '',
     password: '',
     confirmPassword: '',
+    agreeToTerms: false,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //   try {
+    //     const response = await axios.post('https://reqres.in/api/register', {
+    //       email: formData.email,
+    //       password: formData.password,
+    //     });
+    //     router.replace("/userList");
+    //     console.log('Registration successful:', response.data);
+    //     // You can handle the successful registration response here
+    //   } catch (error) {
+    //     console.error('Error during registration:', error.message);
+    //     // You can handle the error here (display an error message, etc.)
+    //   }
+    // };
+    // const handleSubmit = async (values) => {
+    //   const res = await signupService({
+    //     password: formData.password,
+    //     email: formData.email,
+    //   });
+
+    //   if (res.success) {
+    //     // window.location = "/users";
+    //     router.replace("/login");
+    //     console.log('Registration successful:', response.data);
+    //   } else {
+    //     alert(res.message);
+    //     console.error('Error during registration:', error.message);
+    //   }
+    // };
+
+
+
     try {
+      // Check if the user has agreed to the terms
+      if (!formData.agreeToTerms) {
+        alert('Please agree to the terms before signing up');
+        return;
+      }
+
+      // Make sure passwords match
+      if (formData.password !== formData.confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      // Use axios to handle the registration (replace with your API endpoint)
       const response = await axios.post('https://reqres.in/api/register', {
         email: formData.email,
         password: formData.password,
       });
-      router.replace("/userList");
+
+      router.replace('/login');
       console.log('Registration successful:', response.data);
-      // You can handle the successful registration response here
     } catch (error) {
       console.error('Error during registration:', error.message);
-      // You can handle the error here (display an error message, etc.)
+      // Handle the error (display an error message, etc.)
     }
   };
 
-  
-    return (
+
+
+  return (
     <section className="p-0">
       <div className="container">
         <div className="row d-flex justify-content-center">
@@ -103,6 +149,20 @@ function SignUpPage(){
                       required
                     />
                   </div>
+                  <div className="col-12 my-2">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="agreeToTerms"
+                      name="agreeToTerms"
+                      checked={formData.agreeToTerms}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <label className="form-check-label" htmlFor="agreeToTerms">
+                      I agree to the terms and conditions
+                    </label>
+                  </div>
                   <div className="col-12 mx-auto my-2 mt-4">
                     <button
                       className="btn w-100 py-3 bg-primary text-white bg-opacity-50"
@@ -130,3 +190,4 @@ function SignUpPage(){
 
 }
 export default SignUpPage;
+
